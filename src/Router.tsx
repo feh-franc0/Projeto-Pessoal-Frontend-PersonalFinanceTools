@@ -5,6 +5,8 @@ import { Products } from './pages/Products'
 import { DefaultLayout } from './layouts/DefaultLayout/index'
 import { AdminLayout } from './layouts/AdminLayout/index'
 import { Login } from './pages/Login'
+import { Register } from './pages/Register'
+import { LoginAndRegister } from './layouts/LoginAndRegister'
 
 export function Router() {
   //* Apartir do "/" coloque o estilo DefaultLayout <Route path="/" element={<DefaultLayout />}>
@@ -14,13 +16,17 @@ export function Router() {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/" element={<LoginAndRegister />}>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Route>
 
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/products" element={<Products />} />
+        <Route path="/register" element={<Register />} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>
+        <Route path="/admin/products" element={<Products />} />
         <Route path="/admin/" element={<DashBoard />} />
       </Route>
     </Routes>

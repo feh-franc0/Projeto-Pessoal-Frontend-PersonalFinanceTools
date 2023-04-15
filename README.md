@@ -1,5 +1,14 @@
 # Screen Tela de Login
 
+Fotos das paginas do sistema:
+
+<hr>
+
+## Login
+
 ![screenLoginPage](./img/ScreePageLogin.png)
 
-Este é uma capitura de tela da tela de login da aplicação.
+## Register
+
+![screenLoginPage](./img/ScreenPageRegister.png)
+
