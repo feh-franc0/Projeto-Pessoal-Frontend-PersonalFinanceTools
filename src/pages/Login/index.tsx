@@ -1,6 +1,7 @@
 import { LoginContainer, SideLeft, SideRight } from './styles'
 
 import imgSideLeft from '../../assets/loginPic.png'
+import iconGoogle from '../../assets/GoogleG.png'
 
 export function Login() {
   // ? <Outlet /> = um espaço para ser inserido algum conteúdo
@@ -18,8 +19,8 @@ export function Login() {
             <input type="password" id="password" name="password" />
             <input type="submit" value="Entrar" />
           </form> */}
-          <h3>LOGIN</h3>
           <form id="login-form">
+            <h1>LOGIN</h1>
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -38,13 +39,15 @@ export function Login() {
               required
             />
 
-            <div className="remember-me">
-              <input type="checkbox" id="remember" name="remember" />
-              <label htmlFor="remember">Lembrar-me</label>
-            </div>
+            <div className="remeberAndForgot">
+              <div className="remember-me">
+                <input type="checkbox" id="remember" name="remember" />
+                <label htmlFor="remember">Lembrar-me</label>
+              </div>
 
-            <div className="forgot-password">
-              <a href="#">Esqueceu a senha?</a>
+              <div className="forgot-password">
+                <a href="#">Esqueceu a senha?</a>
+              </div>
             </div>
 
             <button type="submit">Entrar</button>
@@ -56,7 +59,9 @@ export function Login() {
 
             <div className="login-with-google">
               <p>Logar com:</p>
-              <button>Google</button>
+              <button>
+                <img src={iconGoogle} alt="" />
+              </button>
             </div>
           </form>
         </div>

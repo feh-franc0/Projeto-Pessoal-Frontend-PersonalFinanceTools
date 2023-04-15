@@ -40,47 +40,17 @@ export const SideRight = styled.div`
   border-bottom-right-radius: 50px;
   color: #000;
 
-  /* .form {
-    width: 400px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f8f8f8;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .form form {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .form label {
-    font-size: 18px;
+  h1 {
+    text-align: center;
+    justify-content: center;
     margin-bottom: 10px;
   }
 
-  .form input[type='text'],
-  .form input[type='password'] {
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
+  #login-form {
+    /* background-color: red;  */
+    width: 100vw;
+    margin: 0px;
   }
-
-  .form input[type='submit'] {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .form input[type='submit']:hover {
-    background-color: #3e8e41;
-  } */
 
   form {
     display: flex;
@@ -100,16 +70,22 @@ export const SideRight = styled.div`
   input[type='password'] {
     padding: 10px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    background-color: #e8f0fe;
+    color: #feffff;
+  }
+
+  .remeberAndForgot {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
   }
 
   .remember-me {
-    /* display: flex; */
-    /* justify-content: space-between; */
-    /* margin-bottom: 10px; */
     input {
+      margin-right: 5px;
     }
     label {
     }
@@ -119,17 +95,18 @@ export const SideRight = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-  }
 
-  .forgot-password a {
-    color: blue;
+    a {
+      text-decoration: none;
+      color: #529fe5;
+    }
   }
 
   button[type='submit'] {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: #529fe5;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
@@ -139,34 +116,38 @@ export const SideRight = styled.div`
     display: flex;
     align-items: center;
     margin-top: 20px;
-  }
-
-  .register p {
-    margin-right: 5px;
-  }
-
-  .register a {
-    color: blue;
+    p {
+      margin-right: 5px;
+    }
+    a {
+      color: #529fe5;
+    }
   }
 
   .login-with-google {
-    display: flex;
-    align-items: center;
+    display: block;
     margin-top: 20px;
-  }
+    text-align: center;
+    justify-content: center;
 
-  .login-with-google p {
-    margin-right: 5px;
-  }
+    p {
+      margin-right: 5px;
+    }
 
-  .login-with-google button {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 1px 1px 1px #ccc;
+    button {
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff;
+      color: #000;
+      font-size: 16px;
+      cursor: pointer;
+      /* box-shadow: 1px 1px 1px #ccc; */
+
+      img {
+        display: block;
+        width: 50px;
+      }
+    }
   }
 `
