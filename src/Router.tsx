@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import { Home } from './pages/Home'
-import { History } from './pages/History'
+// import { Home } from './pages/Home'
 import { DashBoard } from './pages/DashBoard'
 import { Products } from './pages/Products'
 import { DefaultLayout } from './layouts/DefaultLayout/index'
 import { AdminLayout } from './layouts/AdminLayout/index'
+import { Login } from './pages/Login'
 
 export function Router() {
   //* Apartir do "/" coloque o estilo DefaultLayout <Route path="/" element={<DefaultLayout />}>
@@ -14,14 +14,14 @@ export function Router() {
 
   return (
     <Routes>
+      <Route path="/" element={<Login />} />
+
       <Route path="/" element={<DefaultLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/history" element={<History />} />
+        <Route path="/products" element={<Products />} />
       </Route>
 
       <Route path="/admin" element={<AdminLayout />}>
         <Route path="/admin/" element={<DashBoard />} />
-        <Route path="/admin/products" element={<Products />} />
       </Route>
     </Routes>
   )
