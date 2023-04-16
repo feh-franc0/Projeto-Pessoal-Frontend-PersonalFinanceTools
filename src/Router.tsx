@@ -1,19 +1,14 @@
 import { Routes, Route } from 'react-router-dom'
 // import { Home } from './pages/Home'
-import { DashBoard } from './pages/DashBoard'
 import { Products } from './pages/Products'
-import { DefaultLayout } from './layouts/DefaultLayout/index'
-import { AdminLayout } from './layouts/AdminLayout/index'
+import { AccountingLayout } from './layouts/AccountingLayout/index'
+import { InvestmentLayout } from './layouts/InvestmentLayout/index'
 import { Login } from './pages/Login'
 import { Register } from './pages/Register'
+import { AccountFormAndStatement } from './pages/AccountFormAndStatement'
 import { LoginAndRegister } from './layouts/LoginAndRegister'
 
 export function Router() {
-  //* Apartir do "/" coloque o estilo DefaultLayout <Route path="/" element={<DefaultLayout />}>
-
-  //* Apartir do "/admin" coloque o estilo AdminLayout <Route path="/" element={<AdminLayout />}>
-  // ? para acessa a rota de produtos use /admin/products
-
   return (
     <Routes>
       <Route path="/" element={<LoginAndRegister />}>
@@ -21,13 +16,12 @@ export function Router() {
         <Route path="/register" element={<Register />} />
       </Route>
 
-      <Route path="/" element={<DefaultLayout />}>
-        <Route path="/register" element={<Register />} />
+      <Route path="/accounting" element={<AccountingLayout />}>
+        <Route path="/accounting" element={<AccountFormAndStatement />} />
       </Route>
 
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route path="/admin/products" element={<Products />} />
-        <Route path="/admin/" element={<DashBoard />} />
+      <Route path="/finance" element={<InvestmentLayout />}>
+        <Route path="/finance/products" element={<Products />} />
       </Route>
     </Routes>
   )

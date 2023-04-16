@@ -87,7 +87,7 @@ export const SideRight = styled.div`
     border-radius: 5px;
     font-size: 16px;
     background-color: #e8f0fe;
-    color: #feffff;
+    /* color: #feffff; */
   }
 
   .remeberAndForgot {

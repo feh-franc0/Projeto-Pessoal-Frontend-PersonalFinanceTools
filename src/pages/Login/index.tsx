@@ -1,7 +1,20 @@
-import { NavLink } from 'react-router-dom'
+import React, { useState } from 'react'
+import { useNavigate, NavLink } from 'react-router-dom'
 import iconGoogle from '../../assets/GoogleG.png'
 
 export function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const history = useNavigate()
+
+  const handleLogin = () => {
+    if (email === 'email@gmail.com' && password === 'minhasenha123') {
+      history('/accounting') // redireciona para a página home se as credenciais forem válidas
+    } else {
+      alert('Email ou senha inválidos.') // mostra uma mensagem de erro se as credenciais não forem válidas
+    }
+  }
+
   return (
     <div className="form">
       <form id="login-form">
@@ -12,6 +25,8 @@ export function Login() {
           placeholder="digite seu Email"
           id="email"
           name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
 
@@ -22,6 +37,8 @@ export function Login() {
           id="password"
           name="password"
           required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <div className="remeberAndForgot">
@@ -35,7 +52,9 @@ export function Login() {
           </div>
         </div>
 
-        <button type="submit">Entrar</button>
+        <button type="submit" onClick={handleLogin}>
+          Entrar
+        </button>
 
         <div className="register">
           <p>Não tem uma conta?</p>

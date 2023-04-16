@@ -3,7 +3,18 @@ import styled from 'styled-components'
 export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  /* justify-content: space-between; */
+  background-color: ${(props) => props.theme['color-primary']};
+  padding: 2rem;
+  padding-bottom: 5rem;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+
+  h2 {
+    color: white;
+    font-size: 2.5rem;
+  }
 
   nav {
     display: flex;
@@ -23,11 +34,12 @@ export const HeaderContainer = styled.header`
       border-bottom: 3px solid transparent;
 
       &:hover {
-        border-bottom: 3px solid ${(props) => props.theme['green-500']};
+        border-bottom: 3px solid
+          ${(props) => props.theme['color-primary-light']};
       }
 
       &.active {
-        color: ${(props) => props.theme['green-500']};
+        color: ${(props) => props.theme['color-primary-light']};
       }
     }
   }

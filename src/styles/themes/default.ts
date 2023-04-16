@@ -6,6 +6,8 @@ export const defaultTheme = {
   'color-secundary': '#003090',
   'color-secundary-dark': '#001050',
 
+  'white-bg': '#F2F2F2',
+
   'gray-100': '#E1E1E6',
   'gray-300': '#C4C4CC',
   'gray-400': '#8D8D99',
