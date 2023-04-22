@@ -21,7 +21,7 @@ export function Router() {
       </Route>
 
       <Route path="/finance" element={<InvestmentLayout />}>
-        <Route path="/finance/products" element={<Products />} />
+        <Route path="/finance" element={<Products />} />
       </Route>
     </Routes>
   )

@@ -1,12 +1,15 @@
 import { Outlet } from 'react-router-dom'
-import { HeaderAdmin } from '../../components/HeaderAdmin'
+import { LayoutInvestment } from './styles'
+import { Header } from '../../components/Header'
+// import { StockFilterForm } from '../../components/StockFilterForm'
 
 export function InvestmentLayout() {
   // ? <Outlet /> = um espaço para ser inserido algum conteúdo
   return (
-    <div>
-      <HeaderAdmin />
+    <LayoutInvestment>
+      <Header />
+      {/* <StockFilterForm /> */}
       <Outlet />
-    </div>
+    </LayoutInvestment>
   )
 }

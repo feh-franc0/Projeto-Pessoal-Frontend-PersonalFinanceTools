@@ -4,10 +4,10 @@ import { SummaryContainer } from './styles'
 export function Summary() {
   return (
     <SummaryContainer>
-      <div className="saldo">
+      <div className="ganho">
         <div className="container">
           <div className="header">
-            <h2>Saldo</h2>
+            <h2>Ganho</h2>
             <ArrowCircleUp size={32} />
           </div>
           <div className="texto">
@@ -31,7 +31,7 @@ export function Summary() {
       <div className="sobrou">
         <div className="container">
           <div className="header">
-            <h2>Título</h2>
+            <h2>Saldo</h2>
             <CurrencyDollar size={32} />
           </div>
           <div className="texto">

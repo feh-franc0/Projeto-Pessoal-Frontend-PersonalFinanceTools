@@ -1,3 +1,12 @@
+import Table from './Table'
+import { ContainerTableStocks, ScrollTable } from './styles'
+
 export function Products() {
-  return <h1>Products</h1>
+  return (
+    <ContainerTableStocks>
+      <ScrollTable>
+        <Table />
+      </ScrollTable>
+    </ContainerTableStocks>
+  )
 }

@@ -11,7 +11,7 @@ export const SummaryContainer = styled.div`
   position: relative;
   top: -25px;
 
-  .saldo,
+  .ganho,
   .despesa,
   .sobrou {
     border-radius: 8px;
@@ -21,7 +21,7 @@ export const SummaryContainer = styled.div`
     padding: 0px 20px;
   }
 
-  .saldo {
+  .ganho {
     background-color: white;
     .container {
       .header {
