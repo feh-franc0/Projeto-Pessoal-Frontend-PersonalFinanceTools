@@ -23,6 +23,8 @@ export const SummaryContainer = styled.div`
 
   .ganho {
     background-color: white;
+
+    box-shadow: 2px 1px 15px gray;
     .container {
       .header {
         svg {

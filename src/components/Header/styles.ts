@@ -2,12 +2,15 @@ import styled from 'styled-components'
 
 export const HeaderContainer = styled.header`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+
   /* justify-content: space-between; */
   background-color: ${(props) => props.theme['color-primary']};
-  padding: 2rem;
-  padding-bottom: 5rem;
+  padding: 1rem;
+  padding-bottom: 3.5rem;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
 

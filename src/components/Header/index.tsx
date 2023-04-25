@@ -13,7 +13,7 @@ export function Header() {
         <NavLink to="/finance">
           <Bank size={24} />
         </NavLink>
-        <NavLink to="/">
+        <NavLink className="exit" to="/">
           <SignOut size={24} />
         </NavLink>
       </nav>

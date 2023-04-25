@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, NavLink } from 'react-router-dom'
-import iconGoogle from '../../assets/GoogleG.png'
+// import iconGoogle from '../../assets/GoogleG.png'
 
 export function Login() {
   const [email, setEmail] = useState('')
@@ -62,10 +62,10 @@ export function Login() {
         </div>
 
         <div className="login-with-google">
-          <p>Logar com:</p>
+          {/* <p>Logar com:</p>
           <button>
             <img src={iconGoogle} alt="" />
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

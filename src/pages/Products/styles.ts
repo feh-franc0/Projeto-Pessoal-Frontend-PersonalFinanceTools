@@ -8,16 +8,16 @@ export const ContainerTableStocks = styled.div`
 
   table {
     border-collapse: collapse;
-    background-color: rgb(207 218 227);
-    color: #000000;
+    background-color: white;
+    color: ${(props) => props.theme['color-secundary-dark']};
     font-size: 1.2rem;
   }
 
   thead tr {
     position: sticky;
     top: 0;
-    background-color: ${(props) => props.theme['color-secundary-dark']};
-    color: #ffffff;
+    background-color: ${(props) => props.theme['color-secundary']};
+    color: ${(props) => props.theme.white};
   }
 
   table,
@@ -29,10 +29,14 @@ export const ContainerTableStocks = styled.div`
 `
 
 export const ScrollTable = styled.div`
+  /* box-shadow: 2px 1px 15px gray; */
   text-align: center;
-  width: 85%;
+  width: 90%;
+  justify-content: center;
   overflow: auto;
-  height: calc(100vh - 25rem);
+  height: calc(100vh - 26rem);
+  margin: 20px auto;
+  border-top-left-radius: 18px;
   ::-webkit-scrollbar-thumb {
     background-color: ${(props) => props.theme['color-primary']};
     border-top-right-radius: 5px;
@@ -44,5 +48,115 @@ export const ScrollTable = styled.div`
     height: 5px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+  }
+`
+
+export const ContainerMain = styled.div`
+  width: 100%;
+`
+
+export const SummaryContainerSELICIPCACDI = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  /* background-color: #eee; */
+  padding: 20px;
+  position: relative;
+  top: -25px;
+
+  .selic,
+  .ipca,
+  .cdi {
+    border-radius: 8px;
+    width: 25%;
+    height: 100px;
+    display: block;
+    padding: 0px 20px;
+  }
+
+  .selic {
+    box-shadow: 2px 1px 15px gray;
+    background-color: white;
+    .container {
+      .header {
+        h2 {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+        svg {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+      }
+      .texto {
+        color: ${(props) => props.theme['color-secundary-dark']};
+      }
+    }
+  }
+
+  .ipca {
+    box-shadow: 2px 1px 15px gray;
+    background-color: white;
+    .container {
+      .header {
+        h2 {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+        svg {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+      }
+      .texto {
+        color: ${(props) => props.theme['color-secundary-dark']};
+      }
+    }
+  }
+
+  .cdi {
+    box-shadow: 2px 1px 15px gray;
+    background-color: white;
+    .container {
+      .header {
+        h2 {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+        svg {
+          color: ${(props) => props.theme['color-secundary-dark']};
+        }
+      }
+      .texto {
+        color: ${(props) => props.theme['color-secundary-dark']};
+      }
+    }
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    padding: 10px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+
+    h2 {
+      font-size: 1.5rem;
+      /* font-weight: bold; */
+      margin-right: 10px;
+    }
+  }
+  .texto {
+    width: 100%;
+    color: black;
+    p {
+      font-size: 2.3rem;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+    }
   }
 `
