@@ -7,11 +7,26 @@ export function Login() {
   const [password, setPassword] = useState('')
   const history = useNavigate()
 
-  const handleLogin = () => {
-    if (email === 'email@gmail.com' && password === 'minhasenha123') {
-      history('/accounting') // redireciona para a página home se as credenciais forem válidas
+  const handleSubmit = async (event: any) => {
+    event.preventDefault()
+    const data = { email, password }
+    console.log(data)
+    const response = await fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+    const responseData = await response.json()
+    localStorage.setItem('TOKEN_JWT', responseData.token)
+    console.log('responseData: ', responseData.token)
+
+    if (responseData.token) {
+      console.log('logado')
+      history('/accounting')
     } else {
-      alert('Email ou senha inválidos.') // mostra uma mensagem de erro se as credenciais não forem válidas
+      alert(responseData.msg)
     }
   }
 
@@ -52,7 +67,7 @@ export function Login() {
           </div>
         </div>
 
-        <button type="submit" onClick={handleLogin}>
+        <button type="submit" onClick={handleSubmit}>
           Entrar
         </button>
 

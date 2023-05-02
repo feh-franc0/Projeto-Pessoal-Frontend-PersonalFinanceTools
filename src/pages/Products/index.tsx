@@ -6,8 +6,56 @@ import {
   ScrollTable,
   SummaryContainerSELICIPCACDI,
 } from './styles'
+import { useEffect, useState } from 'react'
 
 export function Products() {
+  const [selic, setSelic] = useState('')
+  const [ipca, setIpca] = useState('')
+  const [cdi, setCdi] = useState('')
+
+  const token = localStorage.getItem('TOKEN_JWT')
+
+  useEffect(() => {
+    async function fetchData() {
+      fetch('http://localhost:3000/finance/selic', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setSelic(data)
+          console.log(selic)
+        })
+        .catch((error) => console.error(error))
+
+      fetch('http://localhost:3000/finance/ipca', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setIpca(data)
+          console.log(ipca)
+        })
+        .catch((error) => console.error(error))
+
+      fetch('http://localhost:3000/finance/cdi', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setCdi(data)
+          console.log(cdi)
+        })
+        .catch((error) => console.error(error))
+    }
+    fetchData()
+  }, [])
+
   return (
     <ContainerTableStocks>
       <ContainerMain>

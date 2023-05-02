@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 
   /* justify-content: space-between; */
   background-color: ${(props) => props.theme['color-primary']};

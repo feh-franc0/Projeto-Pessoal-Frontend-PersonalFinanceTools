@@ -1,7 +1,36 @@
 import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
 import { SummaryContainer } from './styles'
+import { useEffect, useState } from 'react'
+
+interface IDataSummary {
+  totalEarn: string
+  totalSpend: string
+  summary: string
+}
 
 export function Summary() {
+  const [dataSummary, setDataSummary] = useState<IDataSummary>({
+    totalEarn: '',
+    totalSpend: '',
+    summary: '',
+  })
+
+  const token = localStorage.getItem('TOKEN_JWT')
+
+  useEffect(() => {
+    fetch('http://localhost:3000/accounting/summary', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setDataSummary(data))
+      .catch((error) => console.error(error))
+  }, [])
+
+  console.log(dataSummary)
+  const { totalEarn, totalSpend, summary } = dataSummary
+
   return (
     <SummaryContainer>
       <div className="ganho">
@@ -11,7 +40,7 @@ export function Summary() {
             <ArrowCircleUp size={32} />
           </div>
           <div className="texto">
-            <p>R$ 1200,00</p>
+            <p>R$ {totalEarn}</p>
           </div>
         </div>
       </div>
@@ -23,7 +52,7 @@ export function Summary() {
             <ArrowCircleDown size={32} />
           </div>
           <div className="texto">
-            <p>R$ 1200,00</p>
+            <p>R$ {totalSpend}</p>
           </div>
         </div>
       </div>
@@ -35,7 +64,7 @@ export function Summary() {
             <CurrencyDollar size={32} />
           </div>
           <div className="texto">
-            <p>R$ 1200,00</p>
+            <p>R$ {summary}</p>
           </div>
         </div>
       </div>

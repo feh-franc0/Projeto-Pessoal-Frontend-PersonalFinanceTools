@@ -7,8 +7,78 @@ import {
 } from 'phosphor-react'
 import { FinancialStatementTable, StyledZero } from './styles'
 import { Summary } from '../../components/Summary'
+import { useEffect, useState } from 'react'
+
+interface IResultSummaryAccounting {
+  _id: string
+  name: string
+  earnOrSpend: 'earn' | 'spend'
+  price: number
+  __v: number
+}
+
+interface IDataForm {
+  name: string
+  earnOrSpend: string
+  price: number
+}
 
 export function AccountFormAndStatement() {
+  const [account, setAccount] = useState<IResultSummaryAccounting[]>([])
+  const [formAccount, setFormAccount] = useState<IDataForm>({
+    name: '',
+    earnOrSpend: 'spend',
+    price: 0,
+  })
+
+  const token = localStorage.getItem('TOKEN_JWT')
+
+  const loadSummaryAccount = async () => {
+    const response = await fetch('http://localhost:3000/accounting/all', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const dados = await response.json()
+    setAccount(dados)
+  }
+
+  useEffect(() => {
+    loadSummaryAccount()
+    // fetch('http://localhost:3000/accounting/all', {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => setAccount(data))
+    //   .catch((error) => console.error(error))
+  }, [])
+
+  const handleAdd = async (event: any) => {
+    event.preventDefault()
+    try {
+      const response = await fetch('http://localhost:3000/accounting', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formAccount),
+      })
+
+      const json = await response.json()
+      console.log(json) // resposta da API
+
+      console.log('formAccount: ', formAccount)
+      loadSummaryAccount()
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  // console.log('account: ', account)
+
   return (
     <>
       <Summary />
@@ -16,12 +86,33 @@ export function AccountFormAndStatement() {
         <form>
           <div className="form-group">
             <label htmlFor="descricao">Descrição:</label>
-            <input type="text" id="descricao" name="descricao" required />
+            <input
+              type="text"
+              id="descricao"
+              name="descricao"
+              required
+              value={formAccount.name}
+              onChange={(event) =>
+                setFormAccount({ ...formAccount, name: event.target.value })
+              }
+            />
           </div>
 
           <div className="form-group">
             <label htmlFor="valor">Valor:</label>
-            <input type="number" id="valor" name="valor" required />
+            <input
+              type="number"
+              id="valor"
+              name="valor"
+              required
+              value={formAccount.price}
+              onChange={(event) =>
+                setFormAccount({
+                  ...formAccount,
+                  price: Number(event.target.value),
+                })
+              }
+            />
           </div>
 
           <div className="form-group">
@@ -30,23 +121,37 @@ export function AccountFormAndStatement() {
                 type="radio"
                 id="entrada"
                 name="tipo"
-                value="entrada"
+                value="earn"
                 required
+                onChange={(event) =>
+                  setFormAccount({
+                    ...formAccount,
+                    earnOrSpend: event.target.value,
+                  })
+                }
               />
               <label htmlFor="entrada">Entrada</label>
               <input
                 type="radio"
                 id="saida"
                 name="tipo"
-                value="saida"
+                value="spend"
                 required
-                checked
+                defaultChecked
+                onChange={(event) =>
+                  setFormAccount({
+                    ...formAccount,
+                    earnOrSpend: event.target.value,
+                  })
+                }
               />
               <label htmlFor="saida">Saída</label>
             </div>
           </div>
 
-          <button type="submit">Adicionar</button>
+          <button type="submit" onClick={handleAdd}>
+            Adicionar
+          </button>
         </form>
 
         <FinancialStatementTable>
@@ -60,118 +165,26 @@ export function AccountFormAndStatement() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Item 1</td>
-                <td>R$ 50,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 2</td>
-                <td>R$ 30,00</td>
-                <td>
-                  <ArrowCircleDown className="spend" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Item 3</td>
-                <td>R$ 20,00</td>
-                <td>
-                  <ArrowCircleUp className="earn" size={32} />
-                </td>
-                <td>
-                  <button>
-                    <Trash className="trash" size={28} />
-                    <MagnifyingGlass className="MagnifyingGlass" size={28} />
-                    <Pencil className="Pencil" size={28} />
-                  </button>
-                </td>
-              </tr>
+              {account.map((obj) => (
+                <tr key={obj._id}>
+                  <td>{obj.name}</td>
+                  <td>{obj.price}</td>
+                  <td>
+                    {obj.earnOrSpend === 'earn' ? (
+                      <ArrowCircleUp className="earn" size={32} />
+                    ) : (
+                      <ArrowCircleDown className="spend" size={32} />
+                    )}
+                  </td>
+                  <td>
+                    <button>
+                      <Trash className="trash" size={28} />
+                      <MagnifyingGlass className="MagnifyingGlass" size={28} />
+                      <Pencil className="Pencil" size={28} />
+                    </button>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </FinancialStatementTable>
