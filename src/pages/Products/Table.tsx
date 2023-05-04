@@ -240,7 +240,7 @@ function Table() {
   }, [])
 
   if (stocks) {
-    console.log(stocks)
+    // console.log(stocks)
   }
 
   // if (stocks === undefined) {

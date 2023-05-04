@@ -10,7 +10,7 @@ export function Login() {
   const handleSubmit = async (event: any) => {
     event.preventDefault()
     const data = { email, password }
-    console.log(data)
+    // console.log(data)
     const response = await fetch('http://localhost:3000/auth/login', {
       method: 'POST',
       headers: {
@@ -20,10 +20,10 @@ export function Login() {
     })
     const responseData = await response.json()
     localStorage.setItem('TOKEN_JWT', responseData.token)
-    console.log('responseData: ', responseData.token)
+    // console.log('responseData: ', responseData.token)
 
     if (responseData.token) {
-      console.log('logado')
+      // console.log('logado')
       history('/accounting')
     } else {
       alert(responseData.msg)

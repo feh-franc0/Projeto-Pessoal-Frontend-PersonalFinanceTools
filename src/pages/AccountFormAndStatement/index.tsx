@@ -17,6 +17,12 @@ interface IResultSummaryAccounting {
   __v: number
 }
 
+interface IDataSummary {
+  totalEarn: string
+  totalSpend: string
+  summary: string
+}
+
 interface IDataForm {
   name: string
   earnOrSpend: string
@@ -33,7 +39,7 @@ export function AccountFormAndStatement() {
 
   const token = localStorage.getItem('TOKEN_JWT')
 
-  const loadSummaryAccount = async () => {
+  const loadAccount = async () => {
     const response = await fetch('http://localhost:3000/accounting/all', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -43,16 +49,19 @@ export function AccountFormAndStatement() {
     setAccount(dados)
   }
 
+  const loadSummaryAccount = async () => {
+    const response = await fetch('http://localhost:3000/accounting/summary', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    const dados = await response.json()
+    setDataSummary(dados)
+  }
+
   useEffect(() => {
+    loadAccount()
     loadSummaryAccount()
-    // fetch('http://localhost:3000/accounting/all', {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => setAccount(data))
-    //   .catch((error) => console.error(error))
   }, [])
 
   const handleAdd = async (event: any) => {
@@ -67,10 +76,8 @@ export function AccountFormAndStatement() {
         body: JSON.stringify(formAccount),
       })
 
-      const json = await response.json()
-      console.log(json) // resposta da API
-
-      console.log('formAccount: ', formAccount)
+      await response.json()
+      loadAccount()
       loadSummaryAccount()
     } catch (error) {
       console.error(error)
@@ -78,10 +85,20 @@ export function AccountFormAndStatement() {
   }
 
   // console.log('account: ', account)
+  const [dataSummary, setDataSummary] = useState<IDataSummary>({
+    totalEarn: '',
+    totalSpend: '',
+    summary: '',
+  })
+
+  // const token = localStorage.getItem('TOKEN_JWT')
+
+  // console.log(dataSummary)
+  // const { totalEarn, totalSpend, summary } = dataSummary
 
   return (
     <>
-      <Summary />
+      <Summary dataSummaryAccount={dataSummary} />
       <StyledZero>
         <form>
           <div className="form-group">

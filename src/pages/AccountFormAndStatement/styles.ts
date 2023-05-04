@@ -84,7 +84,8 @@ export const FinancialStatementTable = styled.div`
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
-  height: calc(70% - 10vh);
+  /* height: calc(70% - 10vh); */
+  height: calc(100vh - 32rem);
 
   table {
     border-collapse: collapse;

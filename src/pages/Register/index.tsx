@@ -17,7 +17,7 @@ export function Register() {
       password,
       confirmpassword: confirmPassword,
     }
-    console.log(data)
+    // console.log(data)
     const response = await fetch('http://localhost:3000/auth/register', {
       method: 'POST',
       headers: {
@@ -26,8 +26,8 @@ export function Register() {
       // body: JSON.stringify(data),
       body: JSON.stringify(data),
     })
-    const responseData = await response.json()
-    console.log(responseData)
+    await response.json()
+    // console.log(responseData)
 
     // if (responseData.token) {
     //   console.log('logado')
