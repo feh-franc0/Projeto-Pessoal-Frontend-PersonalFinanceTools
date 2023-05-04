@@ -149,73 +149,73 @@ interface Tabela {
 //   ],
 // }
 
-// function rewriteTextToCorrectForm(text: String) {
-//   if (text === 'Papel') {
-//     return 'Papel'
-//   }
-//   if (text === 'Cotação') {
-//     return 'Cotação'
-//   }
-//   if (text === 'P/L') {
-//     return 'PsobreL'
-//   }
-//   if (text === 'P/VP') {
-//     return 'PsobreVP'
-//   }
-//   if (text === 'PSR') {
-//     return 'PSR'
-//   }
-//   if (text === 'Div.Yield') {
-//     return 'DivYield'
-//   }
-//   if (text === 'P/Ativo') {
-//     return 'PsobreAtivo'
-//   }
-//   if (text === 'P/Cap.Giro') {
-//     return 'PsobreCapGiro'
-//   }
-//   if (text === 'P/EBIT') {
-//     return 'PsobreEBIT'
-//   }
-//   if (text === 'P/Ativ Circ.Liq') {
-//     return 'PsobreAtivCircLiq'
-//   }
-//   if (text === 'EV/EBIT') {
-//     return 'EVsobreEBIT'
-//   }
-//   if (text === 'EV/EBITDA') {
-//     return 'EVsobreEBITDA'
-//   }
-//   if (text === 'Mrg Ebit') {
-//     return 'MrgEbit'
-//   }
-//   if (text === 'Mrg. Líq.') {
-//     return 'MrgLíq'
-//   }
-//   if (text === 'Liq. Corr.') {
-//     return 'LiqCorr'
-//   }
-//   if (text === 'ROIC') {
-//     return 'ROIC'
-//   }
-//   if (text === 'ROE') {
-//     return 'ROE'
-//   }
-//   if (text === 'Liq.2meses') {
-//     return 'Liq2meses'
-//   }
-//   if (text === 'Patrim. Líq') {
-//     return 'PatrimLíq'
-//   }
-//   if (text === 'Dív.Brut/ Patrim.') {
-//     return 'DívBrutsobrePatrim'
-//   }
-//   if (text === 'Cresc. Rec.5a') {
-//     return 'CrescRec5a'
-//   } else {
-//     throw new Error('Oops!')
-//   }
-// }
+function rewriteTextToCorrectForm(text: String) {
+  if (text === 'Papel') {
+    return 'Papel'
+  }
+  if (text === 'Cotação') {
+    return 'Cotação'
+  }
+  if (text === 'P/L') {
+    return 'PsobreL'
+  }
+  if (text === 'P/VP') {
+    return 'PsobreVP'
+  }
+  if (text === 'PSR') {
+    return 'PSR'
+  }
+  if (text === 'Div.Yield') {
+    return 'DivYield'
+  }
+  if (text === 'P/Ativo') {
+    return 'PsobreAtivo'
+  }
+  if (text === 'P/Cap.Giro') {
+    return 'PsobreCapGiro'
+  }
+  if (text === 'P/EBIT') {
+    return 'PsobreEBIT'
+  }
+  if (text === 'P/Ativ Circ.Liq') {
+    return 'PsobreAtivCircLiq'
+  }
+  if (text === 'EV/EBIT') {
+    return 'EVsobreEBIT'
+  }
+  if (text === 'EV/EBITDA') {
+    return 'EVsobreEBITDA'
+  }
+  if (text === 'Mrg Ebit') {
+    return 'MrgEbit'
+  }
+  if (text === 'Mrg. Líq.') {
+    return 'MrgLíq'
+  }
+  if (text === 'Liq. Corr.') {
+    return 'LiqCorr'
+  }
+  if (text === 'ROIC') {
+    return 'ROIC'
+  }
+  if (text === 'ROE') {
+    return 'ROE'
+  }
+  if (text === 'Liq.2meses') {
+    return 'Liq2meses'
+  }
+  if (text === 'Patrim. Líq') {
+    return 'PatrimLíq'
+  }
+  if (text === 'Dív.Brut/ Patrim.') {
+    return 'DívBrutsobrePatrim'
+  }
+  if (text === 'Cresc. Rec.5a') {
+    return 'CrescRec5a'
+  } else {
+    throw new Error('Oops!')
+  }
+}
 
 function Table() {
   const [stocks, setStocks] = useState<Tabela>()
@@ -250,11 +250,42 @@ function Table() {
   return (
     <table>
       <thead>
-        {/* <tr>
-          {stocks.coluna.map((coluna, index) => (
+        <tr>
+          {/* {stocks.coluna.map((coluna, index) => (
             <th key={index}>{coluna.coluna}</th>
-          ))}
-        </tr> */}
+          ))} */}
+
+          {/* {stocks ? <p>tem</p> : <p>nao tem</p>} */}
+          {stocks ? (
+            stocks.coluna.map((coluna, index) => (
+              <th key={index}>{coluna.coluna}</th>
+            ))
+          ) : (
+            <tr>
+              <th>Papel</th>
+              <th>Cotação</th>
+              <th>P/L</th>
+              <th>P/VP</th>
+              <th>PSR</th>
+              <th>Div.Yield</th>
+              <th>P/Ativo</th>
+              <th>P/Cap.Giro</th>
+              <th>P/EBIT</th>
+              <th>P/Ativ Circ.Liq</th>
+              <th>EV/EBIT</th>
+              <th>EV/EBITDA</th>
+              <th>Mrg Ebit</th>
+              <th>Mrg. Líq.</th>
+              <th>Liq. Corr.</th>
+              <th>ROIC</th>
+              <th>ROE</th>
+              <th>Liq.2meses</th>
+              <th>Patrim. Líq</th>
+              <th>Dív.Brut/ Patrim.</th>
+              <th>Cresc. Rec.5a</th>
+            </tr>
+          )}
+        </tr>
       </thead>
       <tbody>
         {/* {stocks.dados.map((dado, index) => (
@@ -266,6 +297,42 @@ function Table() {
             ))}
           </tr>
         ))} */}
+
+        {stocks ? (
+          stocks.dados.map((dado, index) => (
+            <tr key={index}>
+              {stocks.coluna.map((coluna, index) => (
+                <td key={index}>
+                  {dado[rewriteTextToCorrectForm(coluna.coluna)]}
+                </td>
+              ))}
+            </tr>
+          ))
+        ) : (
+          <tr>
+            {/* <td>ABCD1</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td>
+            <td>0,00</td> */}
+          </tr>
+        )}
       </tbody>
     </table>
   )
