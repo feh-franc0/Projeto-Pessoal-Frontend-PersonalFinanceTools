@@ -8,10 +8,22 @@ import {
 } from './styles'
 import { useEffect, useState } from 'react'
 
+interface ITaxasAccounting {
+  selic: string
+  ipca: string
+  cdi: string
+}
+
 export function Products() {
-  const [selic, setSelic] = useState('')
-  const [ipca, setIpca] = useState('')
-  const [cdi, setCdi] = useState('')
+  const [taxas, setTaxas] = useState<ITaxasAccounting>({
+    selic: '',
+    ipca: '',
+    cdi: '',
+  })
+
+  // const [selic, setSelic] = useState('')
+  // const [ipca, setIpca] = useState('')
+  // const [cdi, setCdi] = useState('')
 
   const token = localStorage.getItem('TOKEN_JWT')
 
@@ -24,8 +36,8 @@ export function Products() {
       })
         .then((response) => response.json())
         .then((data) => {
-          setSelic(data)
-          console.log(selic)
+          setTaxas({ ...taxas, selic: data.result[0].valor })
+          // console.log('taxas: ', taxas)
         })
         .catch((error) => console.error(error))
 
@@ -36,8 +48,8 @@ export function Products() {
       })
         .then((response) => response.json())
         .then((data) => {
-          setIpca(data)
-          console.log(ipca)
+          setTaxas({ ...taxas, ipca: data.result[0].valor })
+          // console.log('taxas: ', taxas)
         })
         .catch((error) => console.error(error))
 
@@ -48,12 +60,13 @@ export function Products() {
       })
         .then((response) => response.json())
         .then((data) => {
-          setCdi(data)
-          console.log(cdi)
+          setTaxas({ ...taxas, cdi: data.result[0].valor })
+          // console.log('taxas: ', taxas)
         })
         .catch((error) => console.error(error))
     }
     fetchData()
+    console.log('taxas: ', taxas)
   }, [])
 
   return (
@@ -67,7 +80,7 @@ export function Products() {
                 <Coins size={24} />
               </div>
               <div className="texto">
-                <p>13,75%</p>
+                <p>{taxas.selic}%</p>
               </div>
             </div>
           </div>
@@ -79,7 +92,7 @@ export function Products() {
                 <Coins size={24} />
               </div>
               <div className="texto">
-                <p> 0,71%</p>
+                <p> {taxas.ipca}%</p>
               </div>
             </div>
           </div>
@@ -91,7 +104,7 @@ export function Products() {
                 <Coins size={24} />
               </div>
               <div className="texto">
-                <p>13,65% </p>
+                <p> {taxas.cdi}% </p>
               </div>
             </div>
           </div>
