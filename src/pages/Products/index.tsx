@@ -21,52 +21,45 @@ export function Products() {
     cdi: '',
   })
 
-  // const [selic, setSelic] = useState('')
-  // const [ipca, setIpca] = useState('')
-  // const [cdi, setCdi] = useState('')
-
   const token = localStorage.getItem('TOKEN_JWT')
 
-  useEffect(() => {
-    async function fetchData() {
-      fetch('http://localhost:3000/finance/selic', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setTaxas({ ...taxas, selic: data.result[0].valor })
-          // console.log('taxas: ', taxas)
-        })
-        .catch((error) => console.error(error))
+  async function fetchData() {
+    try {
+      const response = await Promise.all([
+        fetch('http://localhost:3000/finance/selic', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        fetch('http://localhost:3000/finance/ipca', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+        fetch('http://localhost:3000/finance/cdi', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }),
+      ])
 
-      fetch('http://localhost:3000/finance/ipca', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setTaxas({ ...taxas, ipca: data.result[0].valor })
-          // console.log('taxas: ', taxas)
-        })
-        .catch((error) => console.error(error))
+      const [selicRes, ipcaRes, cdiRes] = await Promise.all(
+        response.map((res) => res.json()),
+      )
 
-      fetch('http://localhost:3000/finance/cdi', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setTaxas({ ...taxas, cdi: data.result[0].valor })
-          // console.log('taxas: ', taxas)
-        })
-        .catch((error) => console.error(error))
+      setTaxas((prevState) => ({
+        ...prevState,
+        selic: selicRes.result[0].valor,
+        ipca: ipcaRes.result[0].valor,
+        cdi: cdiRes.result[0].valor,
+      }))
+    } catch (error) {
+      console.error(error)
     }
+  }
+
+  useEffect(() => {
     fetchData()
-    console.log('taxas: ', taxas)
   }, [])
 
   return (
