@@ -248,93 +248,42 @@ function Table() {
   // }
 
   return (
-    <table>
-      <thead>
-        <tr>
-          {/* {stocks.coluna.map((coluna, index) => (
-            <th key={index}>{coluna.coluna}</th>
-          ))} */}
-
-          {/* {stocks ? <p>tem</p> : <p>nao tem</p>} */}
-          {stocks ? (
-            stocks.coluna.map((coluna, index) => (
-              <th key={index}>{coluna.coluna}</th>
-            ))
-          ) : (
+    <>
+      {stocks ? (
+        <table>
+          <thead>
             <tr>
-              <th>Papel</th>
-              <th>Cotação</th>
-              <th>P/L</th>
-              <th>P/VP</th>
-              <th>PSR</th>
-              <th>Div.Yield</th>
-              <th>P/Ativo</th>
-              <th>P/Cap.Giro</th>
-              <th>P/EBIT</th>
-              <th>P/Ativ Circ.Liq</th>
-              <th>EV/EBIT</th>
-              <th>EV/EBITDA</th>
-              <th>Mrg Ebit</th>
-              <th>Mrg. Líq.</th>
-              <th>Liq. Corr.</th>
-              <th>ROIC</th>
-              <th>ROE</th>
-              <th>Liq.2meses</th>
-              <th>Patrim. Líq</th>
-              <th>Dív.Brut/ Patrim.</th>
-              <th>Cresc. Rec.5a</th>
+              {stocks ? (
+                stocks.coluna.map((coluna, index) => (
+                  <th key={index}>{coluna.coluna}</th>
+                ))
+              ) : (
+                <></>
+              )}
             </tr>
-          )}
-        </tr>
-      </thead>
-      <tbody>
-        {/* {stocks.dados.map((dado, index) => (
-          <tr key={index}>
-            {stocks.coluna.map((coluna, index) => (
-              <td key={index}>
-                {dado[rewriteTextToCorrectForm(coluna.coluna)]}
-              </td>
-            ))}
-          </tr>
-        ))} */}
-
-        {stocks ? (
-          stocks.dados.map((dado, index) => (
-            <tr key={index}>
-              {stocks.coluna.map((coluna, index) => (
-                <td key={index}>
-                  {dado[rewriteTextToCorrectForm(coluna.coluna)]}
-                </td>
-              ))}
-            </tr>
-          ))
-        ) : (
-          <tr>
-            {/* <td>ABCD1</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td>
-            <td>0,00</td> */}
-          </tr>
-        )}
-      </tbody>
-    </table>
+          </thead>
+          <tbody>
+            {stocks ? (
+              stocks.dados.map((dado, index) => (
+                <tr key={index}>
+                  {stocks.coluna.map((coluna, index) => (
+                    <td key={index}>
+                      {dado[rewriteTextToCorrectForm(coluna.coluna)]}
+                    </td>
+                  ))}
+                </tr>
+              ))
+            ) : (
+              <></>
+            )}
+          </tbody>
+        </table>
+      ) : (
+        <div className="containerLoader">
+          <div className="loader"></div>
+        </div>
+      )}
+    </>
   )
 }
 

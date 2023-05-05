@@ -26,6 +26,28 @@ export const ContainerTableStocks = styled.div`
     border: 1px solid black;
     padding: 5px;
   }
+
+  .containerLoader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+
+  .loader {
+    animation: is-rotating 1s infinite;
+    border: 10px solid #e5e5e5;
+    border-top-color: ${(props) => props.theme['color-primary']};
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+  }
+
+  @keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }
 `
 
 export const ScrollTable = styled.div`
