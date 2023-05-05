@@ -46,6 +46,15 @@ export const StyledZero = styled.div`
     }
   }
 
+  button[type='button'] {
+    padding: 10px 15px;
+    border: none;
+    background-color: ${(props) => props.theme['error-alert']};
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+  }
+
   button[type='submit'] {
     padding: 10px 15px;
     border: none;
