@@ -1,7 +1,7 @@
 import {
   ArrowCircleDown,
   ArrowCircleUp,
-  MagnifyingGlass,
+  // MagnifyingGlass,
   Pencil,
   Trash,
 } from 'phosphor-react'
@@ -26,7 +26,7 @@ interface IDataSummary {
 interface IDataForm {
   name: string
   earnOrSpend: string
-  price: number
+  price: string
 }
 
 export function AccountFormAndStatement() {
@@ -34,12 +34,12 @@ export function AccountFormAndStatement() {
   const [formAccount, setFormAccount] = useState<IDataForm>({
     name: '',
     earnOrSpend: 'spend',
-    price: 0,
+    price: '',
   })
 
   const token = localStorage.getItem('TOKEN_JWT')
 
-  const loadAccount = async () => {
+  const loadListItemsAccount = async () => {
     const response = await fetch('http://localhost:3000/accounting/all', {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -60,7 +60,7 @@ export function AccountFormAndStatement() {
   }
 
   useEffect(() => {
-    loadAccount()
+    loadListItemsAccount()
     loadSummaryAccount()
   }, [])
 
@@ -75,26 +75,50 @@ export function AccountFormAndStatement() {
         },
         body: JSON.stringify(formAccount),
       })
-
+      formAccount.name = ''
+      formAccount.price = ''
+      formAccount.earnOrSpend = 'spend'
       await response.json()
-      loadAccount()
+      loadListItemsAccount()
       loadSummaryAccount()
     } catch (error) {
       console.error(error)
     }
   }
 
-  // console.log('account: ', account)
   const [dataSummary, setDataSummary] = useState<IDataSummary>({
     totalEarn: '',
     totalSpend: '',
     summary: '',
   })
 
-  // const token = localStorage.getItem('TOKEN_JWT')
+  const handleDelete = (id: string) => {
+    console.log('handleDelete: ', id)
+    fetch(`http://localhost:3000/accounting/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        console.log('response -> ', response)
+        loadListItemsAccount()
+        loadSummaryAccount()
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
 
-  // console.log(dataSummary)
-  // const { totalEarn, totalSpend, summary } = dataSummary
+  const handleEdit = (id: string) => {
+    console.log('handleEdit: ', id)
+  }
+
+  // const handleView = (id: string) => {
+  //   // lógica para visualizar um objeto com o id fornecido
+  //   console.log('handleView: ', id)
+  // }
 
   return (
     <>
@@ -108,6 +132,7 @@ export function AccountFormAndStatement() {
               id="descricao"
               name="descricao"
               required
+              placeholder="aluguel"
               value={formAccount.name}
               onChange={(event) =>
                 setFormAccount({ ...formAccount, name: event.target.value })
@@ -118,15 +143,16 @@ export function AccountFormAndStatement() {
           <div className="form-group">
             <label htmlFor="valor">Valor:</label>
             <input
-              type="number"
+              type="text"
               id="valor"
               name="valor"
               required
+              placeholder="1200.00"
               value={formAccount.price}
               onChange={(event) =>
                 setFormAccount({
                   ...formAccount,
-                  price: Number(event.target.value),
+                  price: event.target.value,
                 })
               }
             />
@@ -175,10 +201,10 @@ export function AccountFormAndStatement() {
           <table>
             <thead>
               <tr>
-                <th style={{ width: '40%' }}>Descrição</th>
-                <th style={{ width: '30%' }}>Valor</th>
-                <th style={{ width: '10%' }}>Tipo</th>
-                <th style={{ width: '20%' }}></th>
+                <th style={{ width: '50%' }}>Descrição</th>
+                <th style={{ width: '20%' }}>Valor</th>
+                <th style={{ width: '15%' }}>Tipo</th>
+                <th style={{ width: '15%' }}></th>
               </tr>
             </thead>
             <tbody>
@@ -194,11 +220,15 @@ export function AccountFormAndStatement() {
                     )}
                   </td>
                   <td>
-                    <button>
-                      <Trash className="trash" size={28} />
-                      <MagnifyingGlass className="MagnifyingGlass" size={28} />
+                    <button onClick={() => handleEdit(obj._id)}>
                       <Pencil className="Pencil" size={28} />
                     </button>
+                    <button onClick={() => handleDelete(obj._id)}>
+                      <Trash className="trash" size={28} />
+                    </button>
+                    {/* <button onClick={() => handleView(obj._id)}>
+                      <MagnifyingGlass className="MagnifyingGlass" size={28} />
+                    </button> */}
                   </td>
                 </tr>
               ))}

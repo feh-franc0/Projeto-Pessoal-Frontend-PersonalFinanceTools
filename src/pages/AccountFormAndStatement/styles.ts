@@ -65,7 +65,7 @@ export const FinancialStatementTable = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   -webkit-box-align: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: white;
   margin: 20px 6% 0px;
   color: black;
@@ -85,7 +85,7 @@ export const FinancialStatementTable = styled.div`
     border-bottom-right-radius: 5px;
   }
   /* height: calc(70% - 10vh); */
-  height: calc(100vh - 32rem);
+  max-height: calc(100vh - 32rem);
 
   table {
     border-collapse: collapse;
@@ -155,7 +155,7 @@ export const FinancialStatementTable = styled.div`
     cursor: pointer;
 
     svg {
-      margin: 0px 10px;
+      margin: 0px 0px;
     }
   }
 `
