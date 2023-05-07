@@ -52,23 +52,30 @@ export function AccountFormAndStatement() {
   })
 
   const token = localStorage.getItem('TOKEN_JWT')
+  const userId = localStorage.getItem('USER_ID')
 
   const loadListItemsAccount = async () => {
-    const response = await fetch('http://localhost:3000/accounting/all', {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      `http://localhost:3000/accountItems/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
     const dados = await response.json()
     setAccount(dados)
   }
 
   const loadSummaryAccount = async () => {
-    const response = await fetch('http://localhost:3000/accounting/summary', {
-      headers: {
-        Authorization: `Bearer ${token}`,
+    const response = await fetch(
+      `http://localhost:3000/accountItems/summary/${userId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       },
-    })
+    )
     const dados = await response.json()
     setDataSummary(dados)
   }
@@ -81,14 +88,17 @@ export function AccountFormAndStatement() {
   const handleAdd = async (event: any) => {
     event.preventDefault()
     try {
-      const response = await fetch('http://localhost:3000/accounting', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `http://localhost:3000/accountItems/${userId}`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formAccount),
         },
-        body: JSON.stringify(formAccount),
-      })
+      )
       await response.json()
       setFormAccount({
         price: '',
@@ -103,9 +113,40 @@ export function AccountFormAndStatement() {
     }
   }
 
+  const handleEditForm = (event: any) => {
+    event.preventDefault()
+    fetch(
+      `http://localhost:3000/accountItems/${userId}/${idAccountEdit.idItem}`,
+      {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formAccount),
+      },
+    )
+      .then((response) => {
+        console.log('response put -> ', response)
+        loadListItemsAccount()
+        loadSummaryAccount()
+        setMode('cadastro')
+        setIdAccountEdit({ idItem: '' })
+        setFormAccount({
+          price: '',
+          earnOrSpend: 'spend',
+          name: '',
+        })
+        setIsSpendChecked(true)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   const handleDelete = (id: string) => {
     console.log('handleDelete: ', id)
-    fetch(`http://localhost:3000/accounting/${id}`, {
+    fetch(`http://localhost:3000/accountItems/${userId}/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`,
@@ -145,34 +186,6 @@ export function AccountFormAndStatement() {
     setIdAccountEdit({ idItem: '' })
     setIsSpendChecked(true)
     setMode('cadastro')
-  }
-
-  const handleEditForm = (event: any) => {
-    event.preventDefault()
-    fetch(`http://localhost:3000/accounting/${idAccountEdit.idItem}`, {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formAccount),
-    })
-      .then((response) => {
-        console.log('response put -> ', response)
-        loadListItemsAccount()
-        loadSummaryAccount()
-        setMode('cadastro')
-        setIdAccountEdit({ idItem: '' })
-        setFormAccount({
-          price: '',
-          earnOrSpend: 'spend',
-          name: '',
-        })
-        setIsSpendChecked(true)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
   }
 
   // const handleView = (id: string) => {

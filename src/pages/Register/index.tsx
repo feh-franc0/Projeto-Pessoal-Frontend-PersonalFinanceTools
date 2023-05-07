@@ -18,7 +18,7 @@ export function Register() {
       confirmpassword: confirmPassword,
     }
     // console.log(data)
-    const response = await fetch('http://localhost:3000/auth/register', {
+    const response = await fetch('http://localhost:3000/user/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
