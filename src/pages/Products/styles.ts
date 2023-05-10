@@ -5,6 +5,7 @@ export const ContainerTableStocks = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  /* background-color: red; */
 
   table {
     border-collapse: collapse;
@@ -48,6 +49,12 @@ export const ContainerTableStocks = styled.div`
       transform: rotate(1turn);
     }
   }
+
+  @media screen and (max-width: 600px) {
+    table {
+      font-size: 1rem;
+    }
+  }
 `
 
 export const ScrollTable = styled.div`
@@ -71,6 +78,10 @@ export const ScrollTable = styled.div`
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
   }
+
+  @media screen and (max-width: 600px) {
+    height: calc(100vh - 16rem);
+  }
 `
 
 export const ContainerMain = styled.div`
@@ -87,6 +98,7 @@ export const SummaryContainerSELICIPCACDI = styled.div`
   padding: 20px;
   position: relative;
   top: -25px;
+  gap: 5px;
 
   .selic,
   .ipca,
@@ -179,6 +191,26 @@ export const SummaryContainerSELICIPCACDI = styled.div`
       font-weight: bold;
       width: 100%;
       text-align: center;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .selic > .container > .texto > p,
+    .ipca > .container > .texto > p,
+    .cdi > .container > .texto > p {
+      font-size: 1.5rem;
+    }
+
+    .selic > .container > .header > svg,
+    .ipca > .container > .header > svg,
+    .cdi > .container > .header > svg {
+      margin: 0px auto;
+      display: none;
+    }
+
+    .selic,
+    .ipca,
+    .cdi {
+      width: 35%;
     }
   }
 `
