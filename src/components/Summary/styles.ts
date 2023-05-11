@@ -92,7 +92,38 @@ export const SummaryContainer = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
+    gap: 5px;
+    .ganho,
+    .despesa,
+    .sobrou {
+      width: 30%;
+      height: 80px;
+    }
+    .ganho > .container > .texto > p,
+    .despesa > .container > .texto > p,
+    .sobrou > .container > .texto > p {
+      font-size: 2rem;
+    }
+    .ganho > .container > .header > h2,
+    .despesa > .container > .header > h2,
+    .sobrou > .container > .header > h2 {
+      padding: 5px 10px;
+      font-size: 1.3rem;
+    }
+    /* .ganho > .container > .header > svg,
+    .despesa > .container > .header > svg,
+    .sobrou > .container > .header > svg {
+      display: none;
+    } */
+    .ganho > .container,
+    .despesa > .container,
+    .sobrou > .container {
+      padding: 0px;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
     gap: 5px;
     .ganho,
     .despesa,

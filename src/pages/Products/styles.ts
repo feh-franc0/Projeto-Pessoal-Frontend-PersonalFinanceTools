@@ -50,7 +50,7 @@ export const ContainerTableStocks = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 650px) {
     table {
       font-size: 1rem;
     }
@@ -79,7 +79,7 @@ export const ScrollTable = styled.div`
     border-bottom-right-radius: 5px;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 650px) {
     height: calc(100vh - 16rem);
   }
 `
@@ -193,7 +193,7 @@ export const SummaryContainerSELICIPCACDI = styled.div`
       text-align: center;
     }
   }
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 650px) {
     .selic > .container > .texto > p,
     .ipca > .container > .texto > p,
     .cdi > .container > .texto > p {

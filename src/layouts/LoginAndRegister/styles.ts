@@ -11,6 +11,8 @@ export const LayoutContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 650px) {
+  }
 `
 
 export const LoginContainer = styled.div`
@@ -24,6 +26,8 @@ export const LoginContainer = styled.div`
 
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 650px) {
+  }
 `
 
 export const SideLeft = styled.div`
@@ -40,6 +44,9 @@ export const SideLeft = styled.div`
     height: 100%;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+  }
+  @media screen and (max-width: 650px) {
+    display: none;
   }
 `
 
@@ -162,5 +169,10 @@ export const SideRight = styled.div`
         width: 50px;
       }
     }
+  }
+
+  @media screen and (max-width: 650px) {
+    width: 95%;
+    border-radius: 50px;
   }
 `

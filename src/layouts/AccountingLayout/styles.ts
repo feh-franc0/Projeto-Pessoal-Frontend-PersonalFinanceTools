@@ -11,7 +11,7 @@ export const LayoutContainer = styled.div`
   height: calc(100vh - 10rem);
   margin: 5rem auto;
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 650px) {
     margin: 0;
     height: calc(100vh);
   }

@@ -68,7 +68,23 @@ export const StyledZero = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
+    form {
+      margin: 15px 4%;
+      display: block;
+    }
+    button[type='submit'] {
+      width: 100%;
+    }
+    .form-group {
+      flex-wrap: nowrap;
+      justify-content: center;
+      padding: 5px 0px;
+      margin: auto 10px;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
     form {
       margin: 0px 5px;
       display: block;
@@ -184,7 +200,12 @@ export const FinancialStatementTable = styled.div`
     }
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 900px) {
+    max-height: calc(100vh - 36rem);
+    margin: 15px 4%;
+  }
+
+  @media screen and (max-width: 650px) {
     max-height: calc(100vh - 25rem);
     margin: 15px 2%;
   }
