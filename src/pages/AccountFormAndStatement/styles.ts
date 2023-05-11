@@ -67,6 +67,22 @@ export const StyledZero = styled.div`
       background-color: ${(props) => props.theme['color-secundary-dark']};
     }
   }
+
+  @media screen and (max-width: 600px) {
+    form {
+      margin: 0px 5px;
+      display: block;
+    }
+    button[type='submit'] {
+      width: 100%;
+    }
+    .form-group {
+      flex-wrap: nowrap;
+      justify-content: center;
+      padding: 5px 0px;
+      margin: auto 10px;
+    }
+  }
 `
 
 export const FinancialStatementTable = styled.div`
@@ -166,5 +182,10 @@ export const FinancialStatementTable = styled.div`
     svg {
       margin: 0px 0px;
     }
+  }
+
+  @media screen and (max-width: 600px) {
+    max-height: calc(100vh - 25rem);
+    margin: 15px 2%;
   }
 `

@@ -91,4 +91,35 @@ export const SummaryContainer = styled.div`
       text-align: center;
     }
   }
+
+  @media screen and (max-width: 600px) {
+    gap: 5px;
+    .ganho,
+    .despesa,
+    .sobrou {
+      width: 36%;
+      height: 80px;
+    }
+    .ganho > .container > .texto > p,
+    .despesa > .container > .texto > p,
+    .sobrou > .container > .texto > p {
+      font-size: 1.2rem;
+    }
+    .ganho > .container > .header > h2,
+    .despesa > .container > .header > h2,
+    .sobrou > .container > .header > h2 {
+      padding: 0px 10px;
+      font-size: 1.3rem;
+    }
+    .ganho > .container > .header > svg,
+    .despesa > .container > .header > svg,
+    .sobrou > .container > .header > svg {
+      display: none;
+    }
+    .ganho > .container,
+    .despesa > .container,
+    .sobrou > .container {
+      padding: 0px;
+    }
+  }
 `
